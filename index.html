@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Ian - ¡Felicidades! | Ingeniería UNAM</title>
+  <!-- Google Fonts y Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0a0c12;
+      color: #eef2ff;
+      scroll-behavior: smooth;
+    }
+
+    /* Paleta: Azul UNAM + Oro + Blanco/Ebano */
+    :root {
+      --unam-blue: #0a2b4e;
+      --unam-gold: #c9a03d;
+      --chess-dark: #2e2a28;
+      --chess-light: #f0ede8;
+      --glow-gold: rgba(201, 160, 61, 0.4);
+    }
+
+    /* Hero con imagen de ajedrez (parallax) */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(10, 43, 78, 0.85), rgba(0,0,0,0.7)), url('ajedrez.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      background-attachment: fixed;
+      background-blend-mode: overlay;
+      padding: 2rem;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      backdrop-filter: blur(2px);
+      background: rgba(10, 12, 18, 0.55);
+      border-radius: 3rem;
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--unam-gold);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.5rem;
+      letter-spacing: -0.02em;
+      color: var(--unam-gold);
+      text-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+
+    .hero h2 {
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin: 1rem 0;
+    }
+
+    .hero .badge {
+      background: var(--unam-blue);
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    /* Scroll down */
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.8rem;
+      animation: bounce 2s infinite;
+      color: var(--unam-gold);
+      cursor: pointer;
+    }
+
+    @keyframes bounce {
+      0%,100%{ transform: translateX(-50%) translateY(0);}
+      50%{ transform: translateX(-50%) translateY(12px);}
+    }
+
+    /* Secciones generales */
+    section {
+      padding: 5rem 2rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--unam-gold);
+      margin: 0.8rem auto 0;
+      border-radius: 4px;
+    }
+
+    /* Grid de pasiones - cada ficha con icono único */
+    .grid-pasiones {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .card-pasion {
+      background: #11161f;
+      border-radius: 2rem;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid #2a3342;
+      box-shadow: 0 10px 20px -5px rgba(0,0,0,0.3);
+    }
+    .card-pasion:hover {
+      transform: translateY(-8px);
+      border-color: var(--unam-gold);
+      box-shadow: 0 20px 30px -10px var(--glow-gold);
+    }
+    .card-pasion i, .chess-icon {
+      font-size: 3.5rem;
+      color: var(--unam-gold);
+      margin-bottom: 1rem;
+    }
+    .card-pasion h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .card-pasion p {
+      color: #cbd5e6;
+      line-height: 1.5;
+    }
+
+    /* Galería de momentos - con imágenes reales */
+    .grid-momentos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2rem;
+    }
+    .momento-card {
+      background: #0e131c;
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      cursor: pointer;
+      transition: 0.3s ease;
+      border: 2px solid #2f3b4e;
+      position: relative;
+    }
+    .momento-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .momento-card:hover {
+      border-color: var(--unam-gold);
+      transform: scale(1.02);
+    }
+    .momento-card:hover img {
+      transform: scale(1.05);
+    }
+    .momento-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      padding: 1rem;
+      text-align: center;
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+    /* Fallback si no existe la imagen */
+    .momento-card .no-image {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      background: #1a1f2a;
+      color: var(--unam-gold);
+      text-align: center;
+    }
+    .momento-card .no-image i {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Tarjetas de familia */
+    .grid-family {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .card-family {
+      background: linear-gradient(145deg, #11161f, #0c1019);
+      border-radius: 2rem;
+      padding: 2rem;
+      border-left: 6px solid var(--unam-gold);
+    }
+    .card-family h3 i {
+      margin-right: 12px;
+      color: var(--unam-gold);
+    }
+    .card-family p {
+      margin-top: 1rem;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* Countdown y detalles */
+    .countdown-box {
+      background: #00000066;
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 2rem;
+      text-align: center;
+      max-width: 700px;
+      margin: 2rem auto;
+      border: 1px solid var(--unam-gold);
+    }
+    .timer {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+    .time-unit {
+      background: #0a0f17;
+      padding: 0.8rem 1.2rem;
+      border-radius: 1.5rem;
+      min-width: 100px;
+    }
+    .time-unit .number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--unam-gold);
+    }
+
+    /* Botón interactivo de ajedrez */
+    .chess-mini-game {
+      text-align: center;
+      margin: 2rem 0 1rem;
+    }
+    .chess-piece-btn {
+      background: none;
+      border: 2px solid var(--unam-gold);
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      font-size: 1.2rem;
+      color: var(--unam-gold);
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .chess-piece-btn:hover {
+      background: var(--unam-gold);
+      color: #0a0c12;
+    }
+    footer {
+      background: #05070c;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      border-top: 1px solid #1f2a3a;
+    }
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 2.8rem; }
+      .section-title { font-size: 2rem; }
+      .grid-momentos { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero" id="inicio">
+  <div class="hero-content">
+    <div class="badge">🎓 Generación 2026</div>
+    <h1>Felicidades, Ian</h1>
+    <h2>Bachillerato completado · Puma de corazón · Nuevo comienzo</h2>
+    <p style="font-size: 1.2rem; max-width: 600px; margin: 1rem auto;">"Hoy el mundo se detiene para aplaudirte. Papá, mamá y tu hermana Lily estamos increíblemente orgullosos de ti."</p>
+    <div style="margin-top: 2rem;">
+      <i class="fas fa-chess-queen" style="color: var(--unam-gold); font-size: 2rem;"></i>
+      <i class="fas fa-graduation-cap" style="margin-left: 1rem; font-size: 2rem;"></i>
+    </div>
+  </div>
+  <div class="scroll-down" onclick="document.getElementById('pasiones').scrollIntoView({behavior:'smooth'});">
+    <i class="fas fa-chevron-down"></i>
+  </div>
+</div>
+
+<section id="pasiones">
+  <h2 class="section-title">♔ LO QUE TE HACE ÚNICO</h2>
+  <div class="grid-pasiones">
+    <div class="card-pasion">
+      <i class="fas fa-chess-rook"></i>
+      <h3>Ajedrez</h3>
+      <p>Cada partida es un universo de decisiones. Estrategia, paciencia y pensamiento profundo. Esa mente que mueve piezas moverá el mundo.</p>
+    </div>
+    <div class="card-pasion">
+      <i class="fas fa-star-of-life"></i>
+      <i class="fas fa-telescope" style="font-size:2rem; margin-left: 8px;"></i>
+      <h3>Astronomía y Física</h3>
+      <p>Desde pequeño levantaste la vista al cielo. El cosmos es tu brújula, la física tu forma de entender la existencia.</p>
+    </div>
+    <div class="card-pasion">
+      <i class="fas fa-cogs"></i>
+      <h3>Ingeniería UNAM</h3>
+      <p>La ENP2 fue el primer paso. La Facultad de Ingeniería te espera para construir el futuro con ciencia y creatividad.</p>
+    </div>
+    <div class="card-pasion">
+      <i class="fas fa-university"></i>
+      <h3>Puma de corazón</h3>
+      <p>Egresado de una de las preparatorias más prestigiosas. Llevas el azul y oro con orgullo.</p>
+    </div>
+  </div>
+</section>
+
+<section id="momentos" style="background: #0b0f16;">
+  <h2 class="section-title">📸 Momentos que atesoramos</h2>
+  <div class="grid-momentos" id="momentosGrid">
+    <!-- Cada momento carga una imagen real desde archivos JPG -->
+  </div>
+</section>
+
+<section id="familia">
+  <h2 class="section-title">💛 Lo que queremos decirte</h2>
+  <div class="grid-family">
+    <div class="card-family"><h3><i class="fas fa-chess-knight"></i> De tu PAPÁ</h3><p>Ian, desde que eras pequeño te vi mirar el cielo y preguntarte por qué brillan las estrellas. Esa curiosidad te sentaba frente al tablero buscando la jugada perfecta. Hoy verte cruzar esta meta en la ENP2 me llena de orgullo. Compartimos la pasión por la ciencia y la música, y verte florecer es mi mayor regalo. La Ingeniería en la UNAM te espera. Al siguiente movimiento, hijo.<br><strong>— Con todo mi orgullo, Papá</strong></p></div>
+    <div class="card-family"><h3><i class="fas fa-heart"></i> De tu MAMÁ</h3><p>Ian, desde el día en que llegaste supe que harías cosas grandes. Cada reto lo enfrentaste con valentía. Eres mi mayor orgullo, mi razón para sonreír. Este logro es tuyo, pero cada paso lo dimos juntos. Te amo infinito.<br><strong>— Con todo mi amor, Mamá</strong></p></div>
+    <div class="card-family"><h3><i class="fas fa-hand-sparkles"></i> De tu hermana LILY</h3><p>Hermanito, lo lograste. Caminamos los mismos pasillos en la ENP2, compartimos presiones y triunfos. Te veo y me da un orgullo enorme. Siempre tendrás a tu Lily aquí. Te quiero un chorro.<br><strong>— Tu hermana Lily</strong></p></div>
+  </div>
+</section>
+
+<section>
+  <div class="countdown-box">
+    <h3><i class="fas fa-calendar-alt"></i> Ceremonia de Graduación</h3>
+    <p style="font-weight: 300;">5 de junio de 2026 · 9:00 AM | ENP2 - UNAM</p>
+    <div class="timer" id="countdownTimer">
+      <div class="time-unit"><span class="number" id="days">00</span><br>Días</div>
+      <div class="time-unit"><span class="number" id="hours">00</span><br>Horas</div>
+      <div class="time-unit"><span class="number" id="minutes">00</span><br>Min</div>
+      <div class="time-unit"><span class="number" id="seconds">00</span><br>Seg</div>
+    </div>
+    <div class="chess-mini-game">
+      <button class="chess-piece-btn" id="chessSurpriseBtn"><i class="fas fa-chess-queen"></i>  ¡Jaque Mate al esfuerzo!  <i class="fas fa-chess-king"></i></button>
+      <p id="surpriseMsg" style="margin-top: 12px; font-size:0.9rem; color:#d4af5a;"></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><i class="fas fa-chess-queen"></i> Siempre Puma · Facultad de Ingeniería UNAM · Con amor de tu familia <i class="fas fa-heart" style="color: #c9a03d;"></i></p>
+  <p style="margin-top: 0.5rem;">#FelicidadesIan   #IngenieríaUNAM   #AjedrezYEstrellas</p>
+</footer>
+
+<script>
+  // Lista de imágenes para los momentos (nombres de archivo)
+  const momentosImages = [
+    { src: "momento1_ajedrez.jpg", alt: "Ian jugando ajedrez", texto: "♜ Estrategia y pasión" },
+    { src: "momento2_telescopio.jpg", alt: "Ian mirando las estrellas", texto: "🔭 Mirando al infinito" },
+    { src: "momento3_graduacion.jpg", alt: "Ceremonia de graduación", texto: "🎓 Logro cumplido" },
+    { src: "momento4_ingenieria.jpg", alt: "Proyecto de ingeniería", texto: "⚙️ Construyendo el futuro" },
+    { src: "momento5_familia.jpg", alt: "Familia orgullosa", texto: "💛 Nuestro mayor tesoro" },
+    { src: "momento6_unam.jpg", alt: "Orgullo Puma", texto: "🐾 Azul y oro por siempre" }
+  ];
+
+  const grid = document.getElementById('momentosGrid');
+  
+  momentosImages.forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = 'momento-card';
+    
+    // Crear imagen
+    const img = document.createElement('img');
+    img.src = item.src;
+    img.alt = item.alt;
+    img.loading = "lazy";
+    
+    // Manejar error si no existe la imagen
+    img.onerror = function() {
+      this.style.display = 'none';
+      const fallback = document.createElement('div');
+      fallback.className = 'no-image';
+      fallback.innerHTML = `<i class="fas fa-camera"></i><span>${item.texto}</span><small style="font-size:0.7rem;">📷 Foto pendiente</small>`;
+      card.innerHTML = '';
+      card.appendChild(fallback);
+    };
+    
+    card.appendChild(img);
+    
+    // Overlay con texto
+    const overlay = document.createElement('div');
+    overlay.className = 'momento-overlay';
+    overlay.innerHTML = `<span>${item.texto}</span>`;
+    card.appendChild(overlay);
+    
+    // Al hacer clic, abrir la imagen en tamaño completo
+    card.addEventListener('click', () => {
+      window.open(item.src, '_blank');
+    });
+    
+    grid.appendChild(card);
+  });
+
+  // Countdown para 5 Junio 2026 09:00
+  function updateCountdown() {
+    const target = new Date(2026, 5, 5, 9, 0, 0);
+    const now = new Date();
+    const diff = target - now;
+    if(diff <= 0) {
+      document.getElementById('days').innerText = '00';
+      document.getElementById('hours').innerText = '00';
+      document.getElementById('minutes').innerText = '00';
+      document.getElementById('seconds').innerText = '00';
+      return;
+    }
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (86400000)) / 3600000);
+    const minutes = Math.floor((diff % 3600000) / 60000);
+    const seconds = Math.floor((diff % 60000) / 1000);
+    document.getElementById('days').innerText = days < 10 ? '0'+days : days;
+    document.getElementById('hours').innerText = hours < 10 ? '0'+hours : hours;
+    document.getElementById('minutes').innerText = minutes < 10 ? '0'+minutes : minutes;
+    document.getElementById('seconds').innerText = seconds < 10 ? '0'+seconds : seconds;
+  }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // Sorpresa ajedrez
+  const surpriseBtn = document.getElementById('chessSurpriseBtn');
+  const surpriseMsg = document.getElementById('surpriseMsg');
+  surpriseBtn.addEventListener('click', () => {
+    const messages = [
+      "♔ ¡Enhorabuena, Ian! Has dado el mejor movimiento: graduarte con honores. ♔",
+      "♜ Torre de fortaleza: la UNAM te espera para alcanzar nuevas alturas. ♜",
+      "♞ El caballo salta obstáculos... como tú, siempre hacia adelante. ¡Felicidades!",
+      "♝ Alfil de sabiduría: tu mente brilla en cada partida de la vida. ♝",
+      "♛ La reina de la ciencia y la estrategia eres tú, campeón."
+    ];
+    const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+    surpriseMsg.innerHTML = `<i class="fas fa-chess-${['queen','knight','rook','bishop'][Math.floor(Math.random()*4)]}"></i> ${randomMsg}`;
+    surpriseBtn.style.transform = 'scale(0.96)';
+    setTimeout(()=> surpriseBtn.style.transform = '', 150);
+  });
+</script>
+</body>
+</html>
